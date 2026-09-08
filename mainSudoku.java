@@ -1,17 +1,31 @@
-public class mainSudoku {
-    public static void main(String[] args){
- int[][] tablero = {
-            {5, 3, 0, 0, 7, 0, 0, 0, 0},
-            {6, 0, 0, 1, 9, 5, 0, 0, 0},
-            {0, 9, 8, 0, 0, 0, 0, 6, 0},
-            {8, 0, 0, 0, 6, 0, 0, 0, 3},//crear tablero random para probar, lleno de 0's para poner numeros
-            {4, 0, 0, 8, 0, 3, 0, 0, 1},
-            {7, 0, 0, 0, 2, 0, 0, 0, 6},
-            {0, 6, 0, 0, 0, 0, 2, 8, 0},
-            {0, 0, 0, 4, 1, 9, 0, 0, 5},
-            {0, 0, 0, 0, 8, 0, 0, 7, 9}
-        };
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
 
+public class mainSudoku {
+    public static void main(String[] args) throws IOException{
+
+        String filePath = "sudoku.txt";
+
+
+        int[][] tablero = new int[9][9];
+          try (BufferedReader entrada = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            int fila = 0;
+            
+            // readLine() returns null when the end of the file is reached
+            while ((line = entrada.readLine()) != null & fila < 9) {
+                line = line.trim();
+                if(line.isEmpty()) continue;
+                for (int columna = 0; columna < 9; columna++) {
+                    char caracter = line.charAt(columna);
+                    
+                    tablero[fila][columna] = Character.getNumericValue(caracter);
+                }
+                fila++; 
+            }
+
+            
         if (sudoku.sudokuR(tablero)) {
             System.out.println("Sudoku resuelto:");
 
@@ -21,5 +35,9 @@ public class mainSudoku {
                 }
                 System.out.println();
             }
-        }    }
+        }    
+            
+        
+       }
+}
 }

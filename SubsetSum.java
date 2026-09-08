@@ -15,11 +15,9 @@ public class SubsetSum {
         // si no se va a usar, solamente recorremos la posicion del conjunto
         return subsetSuma(numeroBuscar - conjuntosuma[posicion], posicion + 1) || subsetSuma(numeroBuscar, posicion + 1) ;
         }
-
-        
-
   
     } 
+    
 
 
 
